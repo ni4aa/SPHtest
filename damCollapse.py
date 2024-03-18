@@ -9,7 +9,7 @@ DOMAIN_WIDTH = 1200
 DOMAIN_HEIGHT = 300
 
 DAM_BOUNDARY = 300
-ITER_FOR_COLLAPSE = 700
+ITER_FOR_COLLAPSE = 0
 
 PARTICLE_MASS = 1
 ISOTROPIC_EXPONENT = 20
@@ -42,8 +42,8 @@ def set_positions(particles):
     x_ptr = 0
     y_ptr = 0
     for i in range(particles):
-        positions[i, 0] = 10 + (y_ptr % 2) * (SMOOTHING_LENGTH / 2) + x_ptr * SMOOTHING_LENGTH
-        positions[i, 1] = 10 + y_ptr * SMOOTHING_LENGTH/1.1
+        positions[i, 0] = 10 + (y_ptr % 2) * (SMOOTHING_LENGTH / 4) + x_ptr * SMOOTHING_LENGTH
+        positions[i, 1] = 10 + y_ptr * SMOOTHING_LENGTH/1.4
         x_ptr += 1
         if positions[i, 0] + SMOOTHING_LENGTH >= DAM_BOUNDARY:
             y_ptr += 1

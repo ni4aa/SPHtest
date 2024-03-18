@@ -5,8 +5,8 @@ from tqdm import tqdm
 
 DOMAIN_WIDTH = 1200
 DOMAIN_HEIGHT = 300
-SMOOTHING_LENGTH = 38
-PARTICLES = 420
+SMOOTHING_LENGTH = 26
+PARTICLES = 1000
 
 PARTICLE_MASS = 1
 BASE_DENSITY = 1
@@ -19,17 +19,13 @@ TIME_STEP_LENGTH = 0.01
 N_TIME_STEPS = 2500
 FIGURE_SIZE = (8, 2)
 PLOT_EVERY = 4
-SCATTER_DOT_SIZE = 200
+SCATTER_DOT_SIZE = 50
 
 DOMAIN_X_LIM = np.array([0, DOMAIN_WIDTH])
 DOMAIN_Y_LIM = np.array([0, DOMAIN_HEIGHT])
 
 # NORMALIZATION_KERNEL = 4 / (np.pi * SMOOTHING_LENGTH ** 8)
 NORMALIZATION_KERNEL = 315 / (64 * np.pi * SMOOTHING_LENGTH ** 9)
-NORMALIZATION_PRESSURE_FORCE = -(45 * PARTICLE_MASS) / (np.pi * SMOOTHING_LENGTH ** 6)
-NORMALIZATION_VISCOUS_FORCE = (45 * DYNAMIC_VISCOSITY * PARTICLE_MASS) / (np.pi * SMOOTHING_LENGTH ** 6)
-
-
 
 def set_positions():
     positions = np.zeros((PARTICLES, 2))
@@ -39,7 +35,7 @@ def set_positions():
         positions[i, 0] = DOMAIN_WIDTH/20 * x_ptr + DOMAIN_WIDTH/5 * 2
         positions[i, 1] = DOMAIN_HEIGHT/20 * y_ptr + DOMAIN_HEIGHT/5 * 2
         x_ptr += 1
-        if (i+1) % 10 == 0:
+        if (i+1) % np.sqrt(PARTICLES) >= 0:
             y_ptr += 1
             x_ptr = 0
 

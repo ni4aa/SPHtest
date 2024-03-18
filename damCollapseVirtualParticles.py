@@ -95,10 +95,10 @@ def main():
         close_to_bottom_boundary = (positions[:, 1] < DOMAIN_Y_LIM[0] + SMOOTHING_LENGTH/2)\
                                    & (positions[:, 1] > DOMAIN_Y_LIM[0] + SMOOTHING_LENGTH*0.25)
 
-        temp_botton = [[0, 2 * (DOMAIN_Y_LIM[0] - positions[close_to_bottom_boundary, 1][i])]
+        temp_bottom = [[0, 2 * (DOMAIN_Y_LIM[0] - positions[close_to_bottom_boundary, 1][i])]
                        for i in range(len(positions[close_to_bottom_boundary, 1]))]
-        if temp_botton:
-            new_bottom_positions = positions[close_to_bottom_boundary, :] + temp_botton
+        if temp_bottom:
+            new_bottom_positions = positions[close_to_bottom_boundary, :] + temp_bottom
             new_bottom_velocities = -velocities[close_to_bottom_boundary, :]
 
             full_positions = np.concatenate((positions, new_bottom_positions), axis=0)
